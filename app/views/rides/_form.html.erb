@@ -1,0 +1,60 @@
+<html>
+  <head>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+          <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+  <title>KevPool</title> 
+   <br>
+   <body>
+    <script>
+      $(document).ready(function () {
+        $("#myTextField").datepicker({ dateFormat: 'yy-mm-dd' });
+      });
+       $(document).ready(function () {
+        $("#myTextField2").datepicker({ dateFormat: 'yy-mm-dd' });
+      });
+       
+
+</script>
+<%= simple_form_for(@ride) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :I_am  %>
+<%= f.input :Starting_From, :input_html =>{:id => 'addressA'} %><br>
+    <%= f.input :Going_to, :input_html =>{:id => 'addressB'} %> </div>
+            <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+        <script>
+            var autocompleteA = new google.maps.places.Autocomplete($("#addressA")[0], {});
+
+            google.maps.event.addListener(autocompleteA, 'place_changed', function() {
+                var place = autocompleteA.getPlace();
+                console.log(place.address_components);
+            });
+
+            var autocompleteB = new google.maps.places.Autocomplete($("#addressB")[0], {});
+
+            google.maps.event.addListener(autocompleteB, 'place_changed', function() {
+                var place = autocompleteB.getPlace();
+                console.log(place.address_components);
+            });
+        </script>
+
+  <div class="fields">
+    <%= f.label :depart, "Depart" %>
+    <%= f.text_field :depart, :id => "myTextField" %><br><br>
+        <%= f.label :return, "Return" %>
+    <%= f.text_field :return, :id => "myTextField2" %><br>
+  </div>
+  <div class="inputs">
+    <%= f.input :Price %>
+    <%= f.input :Seats %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

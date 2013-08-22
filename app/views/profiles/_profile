@@ -1,0 +1,40 @@
+			<div class="section">
+				<div class="header">
+					<p class="subtitle">User Profile &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to "Edit Profile", edit_profile_path %></p>
+				</div>
+				<div class="box products">
+					<div class="box">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped">
+							<tr>
+								<th style="width:150px;">Name:</th>
+								<td class="info"><%= profile.name %></td>
+							</tr>
+							<tr>
+								<th style="width: 150px;">College (Year):</th>
+								<td class="info">Grinnell College (<%= profile.year %>)</td>
+							</tr>
+							<tr>
+								<th style="width:150px;">Cell:</th>
+								<td class="info"><%= profile.cell %></td>
+							</tr>
+							<tr>
+								<th style="width: 150px;">About Me:</th>
+								<td class="info"><%= profile.aboutme %></td>
+							</tr>							
+							<tr>
+								<th style="width:150px;">Music:</th>
+								<td class="info"><%= profile.music %></td>
+							</tr>
+							<tr>
+								<th style="width: 150px;">Interests:</th>
+								<td class="info"><%= profile.interests %></td>
+							</tr>					
+							<tr class="cap ctrls">
+								<td colspan="2" align="right">
+								
+									
+								
+								</td>
+							</tr>
+						</table>
+					</div>

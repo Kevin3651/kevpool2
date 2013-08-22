@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<br><br>
+
+			<div class="section">
+				<div class="header">
+					<p class="subtitle">User ID and Password&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to "Edit Password", edit_user_registration_path %></p></p>
+				</div>
+				<div class="box products">
+					<div class="box">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<th style="width:150px;">User Email:</th>
+								<td class="info"><%= @user.email %></td>
+							</tr>
+							<tr>
+								<th style="width: 150px;">Password:</th>
+								<td class="info">***</td>
+							</tr>
+							
+						</table>
+						<br><br>
+					</div>
+					<div class="clr"></div>
+				</div>
+			</div>
+
+<%= render @profiles %>
+
+			<br><%= @user.rides.count %>
+
+			
+  <%= render @rides %>
+
+			
+			
