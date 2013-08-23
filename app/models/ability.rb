@@ -8,9 +8,10 @@ class Ability
        can :manage, :all
        can :publish, Ride
      elsif user.role? :Member
-        can :read, [Ride]
-        can :create, [Ride, Request]
+        can :read, [Ride, Profile]
+        can :create, [Ride, Request, Profile]
         can [:edit, :update, :destroy], Ride, :user_id => user.id
+        can [:edit, :update], Profile, :user_id => user.id
         can [:show, :destroy], Request, :user_id => user.id
      end
    end

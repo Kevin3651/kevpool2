@@ -2,6 +2,10 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:index, :show]
 
+rescue_from CanCan::AccessDenied do |exception|
+  flash[:alert] = exception.message
+  redirect_to root_url
+end
   # GET /profiles
   # GET /profiles.json
   def index
@@ -20,6 +24,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    authorize! :edit, @profile
   end
 
   # POST /profiles
@@ -27,6 +32,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
+    authorize! :create, @profile
 
     respond_to do |format|
       if @profile.save
@@ -42,6 +48,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    authorize! :update, @profile
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
