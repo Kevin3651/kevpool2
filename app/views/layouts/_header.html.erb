@@ -1,12 +1,10 @@
-<header class="navbar navbar-fixed-top">
+<header class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
       <%= link_to image_tag("KevPool.png", alt: "KevPool", :width => 170) , root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Help", static_pages_help_path %></li>
+          <li><%= link_to "See Rides", root_path %></li>
           <% if signed_in? %>
 
             <li><%= link_to "Post a Ride", new_ride_path %></li>
@@ -25,7 +23,20 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+  <li class="dropdown">
+<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="fields">
+    <%= f.text_field :email, :placeholder => "Email", :required => true, :autofocus => true %><br>
+    <%= f.password_field :password, :placeholder => "Password", :required => true %><br>
+  </div>
+<button class="btn btn-primary">&nbsp&nbspSign In&nbsp&nbsp</button>
+<% end %>
+</ul></li>
+
+
           <% end %>
         </ul>
       </nav>
@@ -34,3 +45,4 @@
   
  
 </header>
+

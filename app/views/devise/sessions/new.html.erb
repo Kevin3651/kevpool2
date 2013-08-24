@@ -1,18 +1,17 @@
 <br>
 <br>
+<center>
 <p id="notice"><%= notice %></p>
-<h2>Sign in</h2>
+
+<p class="heading">Sign in</p>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, :required => false, :autofocus => true %>
-    <%= f.input :password, :required => false %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  <div class="fields">
+    <%= f.text_field :email, :placeholder => "Email", :required => true, :autofocus => true %><br>
+    <%= f.password_field :password, :placeholder => "Password", :required => true %><br>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
-  </div>
+<button class="btn btn-primary">&nbsp&nbspSign In&nbsp&nbsp</button>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</center>
