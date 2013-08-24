@@ -1,6 +1,6 @@
 class RidesController < ApplicationController
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
-before_filter :authenticate_user!, :except => [:index, :show]
+before_filter :authenticate_user!, :only => [:destroy]
   # GET /rides
   # GET /rides.json
 rescue_from CanCan::AccessDenied do |exception|
