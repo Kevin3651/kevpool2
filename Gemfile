@@ -16,6 +16,7 @@ gem "ransack", github: "ernie/ransack", branch: "rails-4" # Use rails 4 branch
 gem 'devise'
 gem 'omniauth'
 gem 'cancan'
+gem 'thin'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
