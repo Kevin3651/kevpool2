@@ -12,7 +12,21 @@
   <b>Email:</b>
   <%= @request.user_email %>
 </p>
+<p>
+<% if @request.notes.any? %>
+  <b>Notes:</b>
+  <%= @request.notes %>
+<% else %>
+<% end %>
+</p>
+<p>
+<% if @request.phone.any? %>
+  <b>Phone:</b>
+  <%= @request.phone %>
+</p>
+<% else %>
+<% end %>
 
 
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Accept', ride_request_path, :method => :put %> |
+<%= link_to 'Reject', ride_request_path, :method => :destroy %>

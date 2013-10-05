@@ -1,0 +1,128 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import "bootstrap";
+
+
+/* header */
+
+body 
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+html {
+  overflow-y: scroll;
+}
+p.heading {
+  font-style:normal;
+  font-size: 200%;
+
+}
+
+body {
+  padding-top: 100px;
+  background-color: #4B7399;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+a:link { 
+  color: #333333;
+}
+a:visited { 
+  color: #FFFFFF;
+}
+a:hover { 
+  color: #CCCCCC;
+}
+a:active { 
+  color: #333333;
+}
+
+
+
+.btn-custom { background-color: hsl(41, 100%, 55%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffd989", endColorstr="#ffb619"); background-image: -khtml-gradient(linear, left top, left bottom, from(#ffd989), to(#ffb619)); background-image: -moz-linear-gradient(top, #ffd989, #ffb619); background-image: -ms-linear-gradient(top, #ffd989, #ffb619); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffd989), color-stop(100%, #ffb619)); background-image: -webkit-linear-gradient(top, #ffd989, #ffb619); background-image: -o-linear-gradient(top, #ffd989, #ffb619); background-image: linear-gradient(#ffd989, #ffb619); border-color: #ffb619 #ffb619 hsl(41, 100%, 49.5%); color: #333 !important; text-shadow: 0 1px 1px rgba(255, 255, 255, 0.36); -webkit-font-smoothing: antialiased; }
+.simple_form label {
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin: 2px 10px;
+}
+
+.simple_form div.input {
+  margin-bottom: 10px;
+}
+
+.simple_form div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+  float: none;
+  margin: 0;
+}
+
+.simple_form label.collection_radio {
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.simple_form .error {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #D00;
+  display: block;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+

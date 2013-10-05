@@ -1,10 +1,11 @@
 <h1>Editing request</h1>
-
-<%= form_for([:ride, @request]) do |f| %>
-  <p><%= f.submit %></p>
-<% end %>
-
+<%= @request.id %>
+<%= @request.ride_id %>
+<%= @request.user_email %>
 
 
-<%= link_to 'Show', '#' %> |
-<%= link_to 'Back', '#' %>
+
+<%= link_to 'Accept', ride_request_path(@ride, request), :method => :put %>
+<%= link_to 'Reject', ride_request_path(@ride, request), :method => :delete %>
+
+

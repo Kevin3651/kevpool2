@@ -1,6 +1,6 @@
 class RidesController < ApplicationController
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
-before_filter :authenticate_user!, :only => [:destroy]
+before_filter :authenticate_user!, :except => [:index, :show]
   # GET /rides
   # GET /rides.json
 rescue_from CanCan::AccessDenied do |exception|
@@ -13,11 +13,13 @@ end
     @rides = @search.result
 
 
+
   end
 
   # GET /rides/1
   # GET /rides/1.json
   def show
+    @current_user = current_user
   end
 
   # GET /rides/new
@@ -68,7 +70,7 @@ end
   def destroy
     authorize! :destroy, @ride
     @ride.destroy
-    respond_to do |format|
+        respond_to do |format|
       format.html { redirect_to rides_url }
       format.json { head :no_content }
     end

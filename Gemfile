@@ -19,7 +19,8 @@ gem 'cancan'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
-gem 'bootstrap-sass', '2.3.2.0'
+gem 'bootstrap-sass'
+gem 'actionview-encoded_mail_to'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

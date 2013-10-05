@@ -2,20 +2,36 @@
 <html>
 <title>KevPool</title>
   <head>
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
       <script>
         google.load("Jquery", "1.4.2");
         google.load("jqueryui", "1.8.2");
       </script>
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "mobile" if mobile_device? %>
+
+
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <link rel="shortcut icon" href="/images/shortcut.jpeg"> 
   </head>
   <body>
+
+<% if mobile_device? %>
+     <%= render 'layouts/mobile' %>
+      <%= yield %>
+    </div>
+      </body>
+
+</html>
+<% else %>
     <%= render 'layouts/header' %>
       <%= yield %>
     </div>
+    <% end %>
   </body>
+
 </html>

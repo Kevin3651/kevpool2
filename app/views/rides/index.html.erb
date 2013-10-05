@@ -8,6 +8,83 @@
   <title>KevPool</title> 
    <br>
    <body>
+<% if mobile_device? %>
+This is the mobile site bitch!
+<div class="container-fluid">
+    <script>
+      $(document).ready(function () {
+        $("#myTextField").datepicker({ dateFormat: 'yy-mm-dd' });
+      });
+      $('tr').click( function() {
+    window.location = $(this).find('a').attr('href');
+}).hover( function() {
+    $(this).toggleClass('hover');
+});
+</script>
+    <form>
+    <p id="notice"><%= notice %></p> 
+    <center>      
+<%= search_form_for @search do |f| %>
+  <div class="field">
+      
+    <%= f.text_field :Starting_From_cont, :id => 'addressA', :placeholder => 'From where?', :hint => 'To view rides to specific states, write in their state code (i.e. CA for California)'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+   
+    <%= f.text_field :Going_to_cont, :id => 'addressB', :placeholder => 'Where to?'  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+        <script>
+            var autocompleteA = new google.maps.places.Autocomplete($("#addressA")[0], {});
+
+            google.maps.event.addListener(autocompleteA, 'place_changed', function() {
+                var place = autocompleteA.getPlace();
+                console.log(place.address_components);
+            });
+
+            var autocompleteB = new google.maps.places.Autocomplete($("#addressB")[0], {});
+
+            google.maps.event.addListener(autocompleteB, 'place_changed', function() {
+                var place = autocompleteB.getPlace();
+                console.log(place.address_components);
+            });
+        </script>
+ 
+   <%= f.text_field :depart_gteq, :id => "myTextField", :placeholder => 'When?' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<button class="btn btn-warning">&nbsp&nbspSearch&nbsp&nbsp</button></right></div>
+<% end %>
+
+    </form>
+</center>
+<table class="table table">
+
+    <% @rides.each do |ride| %>
+      <tr>
+      <td><h6><%= ride.depart %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
+            <br><button class="btn btn-success">&nbsp&nbsp<%= link_to 'Show', ride %>&nbsp&nbsp</button>
+    <% if can? :update, ride  %>
+        <button class="btn btn-success">&nbsp&nbsp<%= link_to 'Edit', edit_ride_path(ride) %>
+&nbsp&nbsp</button>
+                <% end %>
+<% if can? :destroy, ride  %>
+<button class="btn btn-success">&nbsp&nbsp <%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %>
+&nbsp&nbsp</button>
+        </td>
+ </tr>
+        <% end %>
+     
+      
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'New Ride', new_ride_path %>
+<%= link_to 'See All Rides', rides_path %>
+
+<% else %>
         <div class="container-fluid">
     <script>
       $(document).ready(function () {
@@ -20,7 +97,7 @@
 <%= search_form_for @search do |f| %>
   <div class="field">
       
-    <%= f.text_field :Starting_From_cont, :id => 'addressA', :placeholder => 'From where?'  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :Starting_From_cont, :id => 'addressA', :placeholder => 'From where?', :hint => 'To view rides to specific states, write in their state code (i.e. CA for California)'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
    
     <%= f.text_field :Going_to_cont, :id => 'addressB', :placeholder => 'Where to?'  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,7 +135,6 @@
       <td data-title="User"><%= ride.user_email %></td>
       <td data-title="From/To"><%= ride.Starting_From %> to <%= ride.Going_to %><br>Departs at <%= ride.depart %> Returns at <%= ride.return %> </td>
       <td data-title="Seats">$<%= ride.Price %> per seat <br> <%= ride.Seats %> seats available</td>
-              <td><%= link_to "Request Ride", ride_requests_path(ride), :method => :post %></td>
               <td><%= link_to 'Show', ride %></td>
     <% if can? :update, ride  %>
         <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
@@ -79,4 +155,5 @@
 <%= link_to 'New Ride', new_ride_path %>
 <%= link_to 'See All Rides', rides_path %>
 
+<% end %>
 

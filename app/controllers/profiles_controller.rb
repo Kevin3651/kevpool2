@@ -8,14 +8,11 @@ rescue_from CanCan::AccessDenied do |exception|
 end
   # GET /profiles
   # GET /profiles.json
-  def index
-    @profiles = Profile.all
-  end
+
 
   # GET /profiles/1
   # GET /profiles/1.json
-  def show
-  end
+
 
   # GET /profiles/new
   def new
@@ -36,7 +33,7 @@ end
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { redirect_to user_path(current_user), notice: 'Profile was successfully created.' }
         format.json { render action: 'show', status: :created, location: @profile }
       else
         format.html { render action: 'new' }
@@ -51,7 +48,7 @@ end
     authorize! :update, @profile
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to user_path(current_user), notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

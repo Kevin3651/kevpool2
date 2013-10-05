@@ -1,12 +1,55 @@
-<br>
-<br>
+<br><br>
+<% if mobile_device? %>
+
 <center>
 <p id="notice"><%= notice %></p>
+<p class="heading">Sign In</p>
 
-<p class="heading">Sign in</p>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="fields">
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.text_field :email, :placeholder => "Email", :required => true, :autofocus => true %><br>
+    <%= f.password_field :password, :placeholder => "Password", :required => true %><br>
+  </div>
+<button class="btn btn-primary">&nbsp&nbspSign In&nbsp&nbsp</button>
+<% end %>
+  </div>
+
+
+<%= render "devise/shared/links" %>
+<% else %>
+<div class="container">
+<p class="heading">Signup or Signin</p>
+
+<table>
+<tr> 
+  <td><strong>Sign Up</td></strong>
+  <td>&nbsp&nbsp</td>
+  <td>&nbsp&nbsp</td>
+  <td><strong>Already signed up? Sign In Here</td></strong>
+</tr>
+
+<tr>
+  <td>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.text_field :email, :placeholder => "Email", :required => true, :autofocus => true %><br>
+    <%= f.password_field :password, :placeholder => "Password", :required => true %><br>
+    <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :required => true %><br>
+  </div>
+
+<button class="btn btn-primary">&nbsp&nbspSign Up&nbsp&nbsp</button>
+  </div>
+<% end %>
+</td>
+<td>
+	<td />
+	<td />
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="form-inputs">
     <%= f.text_field :email, :placeholder => "Email", :required => true, :autofocus => true %><br>
     <%= f.password_field :password, :placeholder => "Password", :required => true %><br>
   </div>
@@ -14,4 +57,8 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
-</center>
+</td>	
+</tr>
+</table>
+
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822081232) do
+ActiveRecord::Schema.define(version: 20130923205622) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 20130822081232) do
     t.string   "email"
     t.integer  "ride_number_of_seats"
     t.string   "ride_Seats"
+    t.string   "ride_user_email"
+    t.boolean  "accept",               default: false
+    t.boolean  "reject",               default: false
+    t.string   "phone"
+    t.text     "notes"
+    t.string   "profile_name"
   end
 
   create_table "rides", force: true do |t|
@@ -100,6 +106,7 @@ ActiveRecord::Schema.define(version: 20130822081232) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "profile_name"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true

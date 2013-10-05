@@ -1,11 +1,27 @@
-
+<% if signed_in? %>
 <% for request in requests %>
-  <tr>
-        <% if can? :destroy, request %>
-    <td><%= link_to 'Take back request', ride_request_path(@ride, request), :confirm => 'Are you sure?', :method => :delete %></td>
+		<% if @ride.user_email == current_user.email %>
+        <% if @ride.requests.where(:accept => "f") %>
+        Passenger's Email: <%= request.user_email %><br>
+        Passenger's Notes: <%= request.notes %><br>
+        Passenger's Phone: <%= request.phone %><br>
+
+<button class="btn btn-success">&nbsp&nbsp<%= link_to 'Accept', ride_request_path(@ride, request), :method => :put %>&nbsp&nbsp</button>
+<button class="btn btn-danger">&nbsp&nbsp<%= link_to 'Reject', ride_request_path(@ride, request), :confirm => 'Are you sure?', :method => :delete %>&nbsp&nbsp</button>  <br> <br>    
+    <% elsif @ride.requests.where(:accept => "t") %>
+        Passenger's Email: <%= request.user_email %><br>
+        Passenger's Notes: <%= request.notes %><br>
+        Passenger's Phone: <%= request.phone %><br>
+
+
+<button class="btn btn-success disabled">&nbsp&nbspRequest Accepted&nbsp&nbsp</button>
+mail_to "#{@request.user_email}"<br>
+    	<% end %>
     <% end %>
-  </tr>
+
 <% end %>
-</table>
+<% else %>
+<% end %>
+	
 
 

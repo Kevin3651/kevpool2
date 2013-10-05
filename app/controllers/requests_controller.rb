@@ -35,19 +35,29 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
-    @request = Request.find(params[:id])
+    @ride = Ride.find(params[:ride_id])
+   @request = Request.find(params[:id])
+
   end
 
   # POST /requests
   # POST /requests.xml
   def create
     @ride = Ride.find(params[:ride_id])
-    @request = @ride.requests.build
+    @request = @ride.requests.build(request_params)
     @request.user_id = current_user.id
     @request.user_email = current_user.email
+    @request.ride_user_email = @ride.user_email
+    @request.profile_name = current_user.profile_name
+    #@request.ride_starting_from = @ride.Starting_From
+    #@request.ride_Going_to = @ride.Going_to
+    #@request.ride_depart = @ride.depart
+    #@request.ride_return = @ride.return
+
     respond_to do |format|
       if @request.save
-        
+        RequestMailer.request_created(@request).deliver
+        RequestMailer.accept_reject(@request).deliver
         format.html { redirect_to(@ride, :notice => 'Request was successfully created.') }
         format.xml  { render :xml => @ride, :status => :created, :location => @ride }
       else
@@ -61,10 +71,11 @@ class RequestsController < ApplicationController
   # PUT /requests/1.xml
   def update
     @request = Request.find(params[:id])
-    @ride = @request.ride
+    @ride = Ride.find(params[:ride_id])
     respond_to do |format|
-      if @request.update_attributes(params[:request])
-        format.html { redirect_to(@ride, :notice => 'Request was successfully updated.') }
+      if @request.update_attributes(:accept => "t")
+        RequestMailer.accepted(@request).deliver
+        format.html { redirect_to(@ride, :notice => 'Request was successfully accepted.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -72,6 +83,7 @@ class RequestsController < ApplicationController
       end
     end
   end
+
   
   # DELETE /requests/1
   # DELETE /requests/1.xml
@@ -80,10 +92,21 @@ class RequestsController < ApplicationController
     @ride = Ride.find(params[:ride_id])
     authorize! :destroy, @request
     @request.destroy
-
+    RequestMailer.rejected(@request).deliver
     respond_to do |format|
       format.html { redirect_to(@ride, :notice => 'Request was successfully deleted.') }
       format.xml  { head :ok }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_request
+      @request = Request.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def request_params
+      params.require(:request).permit(:id, :ride_id, :notes, :phone, :accept)
+    end
 end

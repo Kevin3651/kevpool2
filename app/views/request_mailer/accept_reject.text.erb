@@ -1,0 +1,12 @@
+A Request has been created
+
+A request has been sent for your ride: # <%= @request.ride_id %>. 
+
+Their contact info:
+<%= @request.user_email %>
+<%= @request.notes %>
+<%= @request.phone %>
+
+
+<%= link_to 'See all Requests', ride_path(@request.ride_id), :method => :get %>
+

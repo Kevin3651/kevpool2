@@ -1,21 +1,19 @@
 
  <table class="table table-striped table-hover " data-provides="rowlink">
  <tbody>
-
       <tr>
-           <tr>
-      <td><%= ride.Starting_From %> to <%= ride.Going_to %><br>Departs at <%= ride.depart %> Returns at <%= ride.return %> </td>
-      <td>$<%= ride.Price %> per seat <br> <%= ride.Seats %> seats available</td>
-                           <td><%= link_to 'Show', ride %></td>
+      <td><h6><%= ride.depart %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
+            <br><button class="btn btn-success">&nbsp&nbsp<%= link_to 'Show', ride %>&nbsp&nbsp</button>
     <% if can? :update, ride  %>
-        <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
-        <% end %>
+        <button class="btn btn-success">&nbsp&nbsp<%= link_to 'Edit', edit_ride_path(ride) %>
+&nbsp&nbsp</button>
+                <% end %>
 <% if can? :destroy, ride  %>
-        <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<button class="btn btn-success">&nbsp&nbsp <%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %>
+&nbsp&nbsp</button>
+        </td>
  </tr>
         <% end %>
      
-      
-
   </tbody>
 </table>
