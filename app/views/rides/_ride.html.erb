@@ -1,8 +1,8 @@
 
- <table class="table table-striped table-hover " data-provides="rowlink">
+ <table class="table table " data-provides="rowlink">
  <tbody>
       <tr>
-      <td><h6><%= ride.depart %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
+      <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
             <br><button class="btn btn-success">&nbsp&nbsp<%= link_to 'Show', ride %>&nbsp&nbsp</button>
     <% if can? :update, ride  %>
         <button class="btn btn-success">&nbsp&nbsp<%= link_to 'Edit', edit_ride_path(ride) %>

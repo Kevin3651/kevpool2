@@ -1,3 +1,48 @@
+<% if mobile_device? %>
+<div class="container-fluid">
+<p class="heading">Manage My Account</p>
+
+<table>
+<tr> 
+  <td><strong>Edit User</td></strong>
+  <td>&nbsp&nbsp</td>
+  <td>&nbsp&nbsp</td>
+
+</tr>
+<tr>
+
+<td>Email: <%= @user.email %></td>
+
+</tr>
+<tr>
+  <td>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= f.error_notification %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <%= f.password_field :password, :placeholder => "Change Password", :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+    <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :required => false %><br />
+    <%= f.password_field :current_password, :placeholder => "Current Password", :hint => "Sumbit current password to confirm your changes", :required => true %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="btn btn-warning">&nbsp&nbspUpdate&nbsp&nbsp</button></right></div>
+  </div>
+<% end %>
+</td>
+</tr>
+<tr>
+  <td> <strong>Cancel my Account</strong>
+    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+</td><br><br>
+</tr>
+</table>
+
+
+
+<%= link_to "Back", :back %>
+
+<% else %>
 <br><br>
 <div class="container">
 <p class="heading">Manage My Account</p>
@@ -41,3 +86,5 @@
 
 
 <%= link_to "Back", :back %>
+
+<% end %>

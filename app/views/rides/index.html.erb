@@ -60,7 +60,7 @@ This is the mobile site bitch!
 
     <% @rides.each do |ride| %>
       <tr>
-      <td><h6><%= ride.depart %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
+      <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats - ride.requests.where(:accept => "t").count %> seats available<br>
             <br><button class="btn btn-success">&nbsp&nbsp<%= link_to 'Show', ride %>&nbsp&nbsp</button>
     <% if can? :update, ride  %>
         <button class="btn btn-success">&nbsp&nbsp<%= link_to 'Edit', edit_ride_path(ride) %>
@@ -85,7 +85,7 @@ This is the mobile site bitch!
 <%= link_to 'See All Rides', rides_path %>
 
 <% else %>
-        <div class="container-fluid">
+        <div class="container">
     <script>
       $(document).ready(function () {
         $("#myTextField").datepicker({ dateFormat: 'yy-mm-dd' });
@@ -127,20 +127,20 @@ This is the mobile site bitch!
     </form>
 </center>
   <section id="no-more-tables">
-<table class="table table-condensed table-hover ">
-
+<table class="table table">
 
     <% @rides.each do |ride| %>
       <tr>
-      <td data-title="User"><%= ride.user_email %></td>
-      <td data-title="From/To"><%= ride.Starting_From %> to <%= ride.Going_to %><br>Departs at <%= ride.depart %> Returns at <%= ride.return %> </td>
-      <td data-title="Seats">$<%= ride.Price %> per seat <br> <%= ride.Seats %> seats available</td>
-              <td><%= link_to 'Show', ride %></td>
-    <% if can? :update, ride  %>
-        <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
-        <% end %>
+      <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats - ride.requests.where(:accept => "t").count %> seats available<br></td><td>
+            <br><button class="btn btn-success">&nbsp&nbsp<%= link_to 'Show', ride %>&nbsp</button><% if can? :update, ride  %><br>
+        <button class="btn btn-success">&nbsp&nbsp<%= link_to 'Edit', edit_ride_path(ride) %>
+&nbsp&nbsp</button><br>
+                <% end %>
 <% if can? :destroy, ride  %>
-        <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<button class="btn btn-success"><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %>
+</button>
+    
+        </td>
  </tr>
         <% end %>
      

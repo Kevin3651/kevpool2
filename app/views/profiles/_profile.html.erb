@@ -1,17 +1,18 @@
 			<div class="section">
 				<div class="header">
-					<p class="subtitle">User Profile &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<% if can? :edit, request %><%= link_to "Edit Profile", edit_profile_path %></p><% end %>
+					<p class="subtitle">User Profile 
+
+						<right><% if signed_in? %><% if profile.user_id == current_user.id %><%= link_to "Edit Profile", edit_profile_path %></p><% end %><% end %></right>
 				</div>
-				<div class="box products">
-					<div class="box">
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped">
+	
+						<table class="table table-striped">
 							<tr>
-								<th style="width:150px;">Name:</th>
-								<td class="info"><%= profile.name %></td>
+								<th>Name:</th>
+								<td><%= profile.name %></td>
 							</tr>
 							<tr>
-								<th style="width: 150px;">College (Year):</th>
-								<td class="info">Grinnell College (<%= profile.year %>)</td>
+								<th >College (Year):</th>
+								<td >Grinnell College (<%= profile.year %>)</td>
 							</tr>
 							<tr>
 								<th style="width:150px;">Cell:</th>

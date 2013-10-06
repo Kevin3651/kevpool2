@@ -89,8 +89,7 @@ class RequestsController < ApplicationController
   # DELETE /requests/1.xml
   def destroy
     @request = Request.find(params[:id])
-    @ride = Ride.find(params[:ride_id])
-    authorize! :destroy, @request
+    @ride = Ride.find(params[:ride_id]) 
     @request.destroy
     RequestMailer.rejected(@request).deliver
     respond_to do |format|
