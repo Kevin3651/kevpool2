@@ -1,11 +1,17 @@
+<% if signed_in? %>
 
 <% for request in requests %>
-  <tr>
-        <% if can? :destroy, request %>
-    <td><%= link_to 'Take back request', ride_request_path(@ride, request), :confirm => 'Are you sure?', :method => :delete %></td>
+
+        Passenger's Email: <%= mail_to "#{request.user_email}" %><br>
+        Passenger's Notes: <%= request.notes %><br>
+        Passenger's Phone: <%= request.phone %><br>
+
+
+<button class="btn btn-success disabled">&nbsp&nbspRequest Accepted&nbsp&nbsp</button>
+<br>
+    	<% end %>
     <% end %>
-  </tr>
-<% end %>
-</table>
+
+	
 
 

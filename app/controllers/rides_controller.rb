@@ -84,6 +84,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:I_am, :Starting_From, :Going_to, :string, :depart, :return, :Price, :Seats, :Notes)
+      params.require(:ride).permit(:I_am, :Starting_From, :return_time, :depart_time, :Going_to, :string, :depart, :return, :Price, :Seats, :Notes)
     end
 end

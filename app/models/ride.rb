@@ -1,5 +1,5 @@
 class Ride < ActiveRecord::Base
-validates_presence_of :Starting_From, :Going_to, :depart, :Price, :Seats
+validates_presence_of :Starting_From, :Going_to, :depart, :Price, :Seats, :depart_time
 belongs_to :users
 validates :Seats, :numericality => true
   validates :Price, :numericality => true
@@ -14,5 +14,6 @@ default_scope -> { order('depart DESC') }
       end
     end
   end
+
 
 end
