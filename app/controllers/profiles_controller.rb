@@ -75,6 +75,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:name, :cell, :aboutme, :music, :interests, :year)
+      params.require(:profile).permit(:name, :cell, :aboutme, :music, :interests, :year, :user_id)
     end
 end

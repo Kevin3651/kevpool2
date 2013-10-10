@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :token_authenticatable,          
          :lockable, :timeoutable, :omniauthable
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@grinnell.edu\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
 has_many :rides
 has_many :requests
 has_many :seats

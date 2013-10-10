@@ -38,11 +38,10 @@ ActiveRecord::Schema.define(version: 20131009225208) do
     t.datetime "updated_at"
     t.string   "user_email"
     t.string   "email"
-    t.integer  "ride_number_of_seats"
     t.string   "ride_Seats"
     t.string   "ride_user_email"
-    t.boolean  "accept",               default: false
-    t.boolean  "reject",               default: false
+    t.boolean  "accept",          default: false
+    t.boolean  "reject",          default: false
     t.string   "phone"
     t.text     "notes"
     t.string   "profile_name"
@@ -56,15 +55,15 @@ ActiveRecord::Schema.define(version: 20131009225208) do
     t.date     "depart"
     t.date     "return"
     t.string   "Price"
-    t.integer  "Seats"
+    t.integer  "Seats",           limit: 255
     t.string   "Notes"
+    t.integer  "number_of_seats"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "user_email"
     t.integer  "seat_id"
     t.integer  "categories_id"
-    t.integer  "number_of_seats"
     t.time     "depart_time"
     t.time     "return_time"
   end

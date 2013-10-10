@@ -1,5 +1,5 @@
 class RequestMailer < ActionMailer::Base
-  default :from => "noreply@example.com"
+  default :from => "noreply@kevpool.com"
   def request_created(request)
   	@request = request
   	mail to: @request.user_email, subject: "thanks"

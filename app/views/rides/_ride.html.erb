@@ -3,14 +3,12 @@
  <tbody>
       <tr>
       <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
-            <br><button class="btn btn-success">&nbsp&nbsp<%= link_to 'Show', ride %>&nbsp&nbsp</button>
+            <br><%= link_to 'Show', ride, :class => "btn btn-success" %>
     <% if can? :update, ride  %>
-        <button class="btn btn-success">&nbsp&nbsp<%= link_to 'Edit', edit_ride_path(ride) %>
-&nbsp&nbsp</button>
+      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-success" %>
                 <% end %>
 <% if can? :destroy, ride  %>
-<button class="btn btn-success">&nbsp&nbsp <%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %>
-&nbsp&nbsp</button>
+<%= link_to 'Destroy', ride, :class => "btn btn-success", method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
  </tr>
         <% end %>

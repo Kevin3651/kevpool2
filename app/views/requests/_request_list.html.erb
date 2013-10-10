@@ -8,6 +8,7 @@
 
 
 <button class="btn btn-success disabled">&nbsp&nbspRequest Accepted&nbsp&nbsp</button>
+<button class="btn btn-danger">&nbsp&nbsp<%= link_to 'Reject', ride_request_path(@ride, request), :confirm => 'Are you sure?', :method => :delete %>&nbsp&nbsp</button>
 <br>
     	<% end %>
     <% end %>
