@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20131009225208) do
     t.date     "depart"
     t.date     "return"
     t.string   "Price"
-    t.integer  "Seats",           limit: 255
+    t.integer  "Seats"
     t.string   "Notes"
     t.datetime "created_at"
     t.datetime "updated_at"
