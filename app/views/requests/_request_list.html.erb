@@ -1,18 +1,15 @@
 <% if signed_in? %>
 
 <% for request in requests %>
-
+<% if @ride.user_email == current_user.email %>
         Passenger's Email: <%= mail_to "#{request.user_email}" %><br>
-        Passenger's Notes: <%= request.notes %><br>
-        Passenger's Phone: <%= request.phone %><br>
-
+        <% unless request.notes.nil? %>Passenger's Notes: <%= request.notes %><% end %><br>
+        <% unless request.phone.nil? %>Passenger's Phone: <%= request.phone %><% end %><br>
 
 <button class="btn btn-success disabled">&nbsp&nbspRequest Accepted&nbsp&nbsp</button>
-<button class="btn btn-danger">&nbsp&nbsp<%= link_to 'Reject', ride_request_path(@ride, request), :confirm => 'Are you sure?', :method => :delete %>&nbsp&nbsp</button>
-<br>
-    	<% end %>
-    <% end %>
-
-	
-
+<%= link_to 'Reject', ride_request_path(@ride, request), :class => "btn btn-danger", :confirm => 'Are you sure?', :method => :delete %>&nbsp&nbsp</button>
+  <%= button_to 'See their profile', user_path(request.user_id), :method => :get %>
+<% end %>  
+<% end %>  
+<% end %>
 

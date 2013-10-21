@@ -3,6 +3,12 @@ Please::Application.routes.draw do
 
 
 
+
+
+  resources :fasts do
+    resources :request2s
+  end
+
   resources :profiles
 
   get "users/index"
@@ -12,7 +18,6 @@ Please::Application.routes.draw do
   get "static_pages/contact"
   get "static_pages/about_us"
   get "static_pages/legal"
-  get "static_pages/profile"
   devise_for :users
   resources :users
   resources :rides do

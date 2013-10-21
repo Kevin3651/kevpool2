@@ -11,21 +11,25 @@
         google.load("jqueryui", "1.8.2");
       </script>
     <%= stylesheet_link_tag "application" %>
-    <%= stylesheet_link_tag "mobile" if mobile_device? %>
+    <%= stylesheet_link_tag "mobile"  %>
 
 
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-
+<% if mobile_device? %>
+<meta name="viewport" content="width=670, initial-scale=0.45, minimum-scale=0.45"/>
+<% end %>
   </head>
   <body>
+    <div id="some-div" data-no-turbolink>
 
 <% if mobile_device? %>
 
      <%= render 'layouts/mobile' %>
-     <meta name="viewport" content="width=670, initial-scale=0.45, minimum-scale=0.45"/>
+     
       <%= yield %>
     </div>
+        <%= render 'layouts/footer' %>
       </body>
 
 </html>
@@ -33,7 +37,8 @@
     <%= render 'layouts/header' %>
       <%= yield %>
     </div>
-    <% end %>
+
+    <%= render 'layouts/footer' %>    <% end %>
   </body>
 
 </html>

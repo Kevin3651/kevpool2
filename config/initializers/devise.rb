@@ -7,7 +7,7 @@ Devise.setup do |config|
   config.mailer_sender = "charette@kevpool.com"
 
   # Secret Key
- config.secret_key = '37320495a85046fcfdcc799b935ff2936688179d70c07616154768ebd79a193ceeb142f07b8e3ca75c1d1271d2553568763293bc30a7b591289f20f8876e9dc2'
+ #config.secret_key = '37320495a85046fcfdcc799b935ff2936688179d70c07616154768ebd79a193ceeb142f07b8e3ca75c1d1271d2553568763293bc30a7b591289f20f8876e9dc2'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

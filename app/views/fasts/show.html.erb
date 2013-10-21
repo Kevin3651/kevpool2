@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Where:</strong>
+  <%= @fast.where %>
+</p>
+
+<p>
+  <strong>When:</strong>
+  <%= @fast.when %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @fast.price %>
+</p>
+
+<p>
+  <strong>Seats:</strong>
+  <%= @fast.seats %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @fast.notes %>
+</p>
+
+<%= link_to 'Edit', edit_fast_path(@fast) %> |
+<%= link_to 'Back', fasts_path %>

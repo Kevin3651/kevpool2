@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009225208) do
+ActiveRecord::Schema.define(version: 20131021163034) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fasts", force: true do |t|
+    t.string   "where"
+    t.string   "when"
+    t.integer  "price"
+    t.integer  "seats"
+    t.integer  "user_id"
+    t.string   "user_email"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,6 +41,28 @@ ActiveRecord::Schema.define(version: 20131009225208) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "quick_rides", force: true do |t|
+    t.string   "when"
+    t.string   "where"
+    t.integer  "price"
+    t.integer  "seats"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "request2s", force: true do |t|
+    t.integer  "fast_id"
+    t.text     "notes"
+    t.string   "phone"
+    t.boolean  "accept"
+    t.string   "user_email"
+    t.string   "fast_user_email"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "requests", force: true do |t|

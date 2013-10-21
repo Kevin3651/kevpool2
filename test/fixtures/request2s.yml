@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fast_id: 
+  : 
+  phone: 
+  accept: 
+  user_email: 
+  fast_user_email,: MyString
+  user_id: 1
+
+two:
+  fast_id: 
+  : 
+  phone: 
+  accept: 
+  user_email: 
+  fast_user_email,: MyString
+  user_id: 1

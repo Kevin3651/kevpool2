@@ -2,13 +2,13 @@
  <table class="table table " data-provides="rowlink">
  <tbody>
       <tr>
-      <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
-            <br><%= link_to 'Show', ride, :class => "btn btn-success" %>
+      <td><h6><%= ride.depart.to_s(:long) %><font color="red"><% if ride.user_id == current_user.id %><% if ride.requests.where(:accept => "f").any? %> You have new requests! <% end %><% end %></font></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats %> seats available<br>
+            <br><%= link_to 'Show', ride, :class => "btn btn-warning" %>
     <% if can? :update, ride  %>
-      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-success" %>
+      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-warning" %>
                 <% end %>
 <% if can? :destroy, ride  %>
-<%= link_to 'Destroy', ride, :class => "btn btn-success", method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', ride, :class => "btn btn-warning", method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
  </tr>
         <% end %>

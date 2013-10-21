@@ -29,7 +29,6 @@ end
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
-    authorize! :create, @profile
 
     respond_to do |format|
       if @profile.save

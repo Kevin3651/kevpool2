@@ -15,6 +15,7 @@ gem 'simple_form'
 gem "ransack", github: "ernie/ransack", branch: "rails-4" # Use rails 4 branch
 gem 'devise'
 gem 'omniauth'
+gem 'jquery-sliders-rails'
 gem 'cancan'
 gem 'thin'
 gem 'jquery-rails'

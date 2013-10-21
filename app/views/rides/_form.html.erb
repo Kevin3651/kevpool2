@@ -21,24 +21,34 @@
 
 </script>
 <%= simple_form_for(@ride) do |f| %>
-  <%= f.error_notification %>
+  <% if @ride.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ride.errors.count, "error") %> prohibited this Ride from being saved:</h2>
+
+      <ul>
+      <% @ride.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="inputs">
 <%= f.input :Starting_From, :input_html =>{:id => 'addressA'} %>
     <%= f.input :Going_to, :input_html =>{:id => 'addressB'} %> </div>
             <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
         <script>
-            var autocompleteA = new google.maps.places.Autocomplete($("#addressC")[0], {});
+            var autocompleteA = new google.maps.places.Autocomplete($("#addressA")[0], {});
 
-            google.maps.event.addListener(autocompleteC, 'place_changed', function() {
-                var place = autocompleteC.getPlace();
+            google.maps.event.addListener(autocompleteA, 'place_changed', function() {
+                var place = autocompleteA.getPlace();
                 console.log(place.address_components);
             });
 
-            var autocompleteB = new google.maps.places.Autocomplete($("#addressD")[0], {});
+            var autocompleteB = new google.maps.places.Autocomplete($("#addressB")[0], {});
 
-            google.maps.event.addListener(autocompleteD, 'place_changed', function() {
-                var place = autocompleteD.getPlace();
+            google.maps.event.addListener(autocompleteB, 'place_changed', function() {
+                var place = autocompleteB.getPlace();
                 console.log(place.address_components);
             });
         </script>
@@ -56,7 +66,9 @@
       <%= f.input :return_time %>
     <%= f.input :Price %>
     <%= f.input :Seats %>
-    <%= f.input :Notes %>
+    <%= f.label :Notes %>
+    <%= f.text_area :Notes %>
+<span class="help-block">Hint: List Popular cities you are going through to get to your destination</span>
 
   </div>
 
@@ -124,7 +136,8 @@
       <%= f.input :return_time %>
     <%= f.input :Price %>
     <%= f.input :Seats %>
-    <%= f.input :Notes %>
+    <%= f.label :Notes %>
+    <%= f.text_area :Notes %>
 
   </div>
 

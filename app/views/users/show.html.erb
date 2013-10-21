@@ -6,51 +6,18 @@
 <% if @profiles.any? %>
 <%= render @profiles %>
 <% else %>
-			<div class="section">
-				<div class="header">
-					<p class="heading">User Profile &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to "Edit Profile", new_profile_path %></p>
-				</div>
-				<div class="box products">
-					<div class="box">
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped">
-							<tr>
-								<th style="width:150px;">Name:</th>
-								<td class="info"></td>
-							</tr>
-							<tr>
-								<th style="width: 150px;">College (Year):</th>
-								<td class="info">Grinnell College ()</td>
-							</tr>
-							<tr>
-								<th style="width:150px;">Cell:</th>
-								<td class="info"></td>
-							</tr>
-							<tr>
-								<th style="width: 150px;">About Me:</th>
-								<td class="info"></td>
-							</tr>							
-							<tr>
-								<th style="width:150px;">Music:</th>
-								<td class="info"></td>
-							</tr>
-							<tr>
-								<th style="width: 150px;">Interests:</th>
-								<td class="info"></td>
-							</tr>					
-							<tr class="cap ctrls">
-								<td colspan="2" align="right">
-								
-									
-								
-								</td>
-							</tr>
-						</table>
-					</div>
+<% if @user.id == current_user.id %>
+<%= render :partial => "profiles/new" %>
+<% else %>
+<%= render :partial => "profiles/nothin" %>
+<% end %>
 <% end %>
 
-
-
-			
+<% unless @rides.nil? %>	
+Driver's Rides:	
   <%= render @rides %>
+ <% else %>
+ Driver does not have any rides. 
+ <% end %>
 
 	

@@ -13,7 +13,6 @@ end
     @rides = @search.result
 
 
-
   end
 
   # GET /rides/1

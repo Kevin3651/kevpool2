@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  when: MyString
+  where: MyString
+  price: 1
+  seats: 1
+  notes: MyText
+
+two:
+  when: MyString
+  where: MyString
+  price: 1
+  seats: 1
+  notes: MyText

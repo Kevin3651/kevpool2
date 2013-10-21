@@ -9,11 +9,10 @@
    <br>
    <body>
 <% if mobile_device? %>
-This is the mobile site bitch!
 <div class="container-fluid">
     <script>
       $(document).ready(function () {
-        $("#myTextField").datepicker({ dateFormat: 'yy-mm-dd' });
+        $("#myTextField").datepicker({ minDate: 0, dateFormat: 'yy-mm-dd' });
       });
       $('tr').click( function() {
     window.location = $(this).find('a').attr('href');
@@ -27,7 +26,7 @@ This is the mobile site bitch!
 <%= search_form_for @search do |f| %>
   <div class="field">
       
-    <%= f.text_field :Starting_From_cont, :id => 'addressA', :placeholder => 'From where?', :hint => 'To view rides to specific states, write in their state code (i.e. CA for California)'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :Starting_From_or_Notes_cont, :id => 'addressA', :placeholder => 'From where?', :hint => 'To view rides to specific states, write in their state code (i.e. CA for California)'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
    
     <%= f.text_field :Going_to_cont, :id => 'addressB', :placeholder => 'Where to?'  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,7 +50,7 @@ This is the mobile site bitch!
  
    <%= f.text_field :depart_gteq, :id => "myTextField", :placeholder => 'When?' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
-<button class="btn btn-warning">&nbsp&nbspSearch&nbsp&nbsp</button></right></div>
+<button class="btn btn-success">&nbsp&nbspSearch&nbsp&nbsp</button></right></div>
 <% end %>
 
     </form>
@@ -60,12 +59,13 @@ This is the mobile site bitch!
     <% @rides.each do |ride| %>
       <tr>
       <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats - ride.requests.where(:accept => "t").count %> seats available<br>
-            <br><%= link_to 'Show', ride, :class => "btn btn-success" %>
+        <font color="red"><% if signed_in? %><% if ride.user_id == current_user.id %><% if ride.requests.where(:accept => "f").any? %> You have new requests! <% end %><% end %></font><% end %>
+            <br><%= link_to 'Show', ride, :class => "btn btn-warning" %>
     <% if can? :update, ride  %>
-      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-success" %>
+      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-warning" %>
                 <% end %>
 <% if can? :destroy, ride  %>
-<%= link_to 'Destroy', ride, :class => "btn btn-success", method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', ride, :class => "btn btn-warning", method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
  </tr>
         <% end %>
@@ -85,7 +85,7 @@ This is the mobile site bitch!
         <div class="container">
     <script>
       $(document).ready(function () {
-        $("#myTextField").datepicker({ dateFormat: 'yy-mm-dd' });
+        $("#myTextField").datepicker({ minDate: 0, dateFormat: 'yy-mm-dd' });
       });
 </script>
     <form>
@@ -94,10 +94,10 @@ This is the mobile site bitch!
 <%= search_form_for @search do |f| %>
   <div class="field">
       
-    <%= f.text_field :Starting_From_cont, :id => 'addressA', :placeholder => 'From where?', :hint => 'To view rides to specific states, write in their state code (i.e. CA for California)'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :Starting_From_cont, :id => 'addressA', :placeholder => 'From where?', :hint =>'To view rides to specific states, write in their state code (i.e. CA for California)'%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 
    
-    <%= f.text_field :Going_to_cont, :id => 'addressB', :placeholder => 'Where to?'  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :Going_to_cont, :id => 'addressB', :placeholder => 'Where to?'  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
         <script>
@@ -116,25 +116,28 @@ This is the mobile site bitch!
             });
         </script>
  
-   <%= f.text_field :depart_gteq, :id => "myTextField", :placeholder => 'When?' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <%= f.text_field :depart_gteq, :id => "myTextField", :placeholder => 'When?' %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 
-<button class="btn btn-warning">&nbsp&nbspSearch&nbsp&nbsp</button></right></div>
+<button class="btn btn-success">&nbsp&nbspSearch&nbsp&nbsp</button></right></div>
 <% end %>
 
     </form>
 </center>
   <section id="no-more-tables">
 <table class="table table">
-
+<% if @rides.nil? %>
+No rides found
+<% else %>
     <% @rides.each do |ride| %>
       <tr>
-      <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats - ride.requests.where(:accept => "t").count %> seats available<br></td><td>
-                        <br>&nbsp&nbsp&nbsp&nbsp<%= link_to 'Show', ride, :class => "btn btn-success" %>
+      <td><h6><%= ride.depart.to_s(:long) %></h6><h5><%= ride.Starting_From %> to <%= ride.Going_to %></h5><h6>$<%= ride.Price %> per seat | <%= ride.Seats - ride.requests.where(:accept => "t").count %> seats available<br> </td><td><h6>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><% if signed_in? %><% if ride.user_id == current_user.id %><% if ride.requests.where(:accept => "f").any? %> You have new requests! <% end %><% end %></font><br><% end %>
+                        <br>&nbsp&nbsp&nbsp&nbsp<%= link_to 'Show', ride, :class => "btn btn-warning" %>
     <% if can? :update, ride  %>
-      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-success" %>
+      <%= link_to 'Edit', edit_ride_path(ride), :class => "btn btn-warning" %>
                 <% end %>
 <% if can? :destroy, ride  %>
-<%= link_to 'Destroy', ride, :class => "btn btn-success", method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', ride, :class => "btn btn-warning", method: :delete, data: { confirm: 'Are you sure?' } %>
     
         </td>
  </tr>
@@ -150,6 +153,8 @@ This is the mobile site bitch!
 
 <%= link_to 'New Ride', new_ride_path %>
 <%= link_to 'See All Rides', rides_path %>
+
+<% end %>
 
 <% end %>
 

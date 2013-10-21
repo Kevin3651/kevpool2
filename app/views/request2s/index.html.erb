@@ -1,0 +1,39 @@
+<h1>Listing request2s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fast</th>
+      <th></th>
+      <th>Phone</th>
+      <th>Accept</th>
+      <th>User email</th>
+      <th>Fast user email,</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @request2s.each do |request2| %>
+      <tr>
+        <td><%= request2.fast_id %></td>
+        <td><%= request2. %></td>
+        <td><%= request2.phone %></td>
+        <td><%= request2.accept %></td>
+        <td><%= request2.user_email %></td>
+        <td><%= request2.fast_user_email, %></td>
+        <td><%= request2.user_id %></td>
+        <td><%= link_to 'Show', request2 %></td>
+        <td><%= link_to 'Edit', edit_request2_path(request2) %></td>
+        <td><%= link_to 'Destroy', request2, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Request2', new_request2_path %>

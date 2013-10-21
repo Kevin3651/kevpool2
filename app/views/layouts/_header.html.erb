@@ -1,13 +1,57 @@
 <header class="navbar navbar-fixed-top navbar-default">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <%= link_to image_tag("KevPool.png", alt: "KevPool", width: '170') , root_path, id: "logo" %>
+      <%= link_to image_tag("KevPool.png", alt: "KevPool") , root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          
           <li><%= link_to "See Rides", root_path %></li>
           <% if signed_in? %>
 
             <li><%= link_to "Post a Ride", new_ride_path %></li>
+            <li class="dropdown">
+<a class="dropdown-toggle" href="#" data-toggle="dropdown">Quick Ride <strong class="caret"></strong></a>
+<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+<%= form_for(@fast) do |f| %>
+  <% if @fast.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fast.errors.count, "error") %> prohibited this fast from being saved:</h2>
+
+      <ul>
+      <% @fast.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= f.label :where %><br>
+    <%= f.select :where, options_for_select(["Walmart", "Hyvee", "In Town (McNallies, Kum&Go)"]) %>
+  </div>
+ <div id="slider">Bal</div>
+  <div class="field">
+    <%= f.label :when %><br>
+    <%= f.select :when, options_for_select(["In an hour", "In 2 hour"]) %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :seats %><br>
+    <%= f.text_field :seats %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.email %> <b class="caret"></b>

@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-before_filter :authenticate_user!, :except => [:home, :help, :contact, :about_us, :legal,]
   def home
   end
 
@@ -14,6 +13,7 @@ before_filter :authenticate_user!, :except => [:home, :help, :contact, :about_us
 
   def legal
   end
+  
 
   def profile
   end
